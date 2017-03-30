@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>angular表单验证</title>
+	<script src='build/angular.min.js'></script>
+	<script src='js/index.js'></script>
+	<link rel="stylesheet" href="build/bootstrap.min.css">
+	<style>
+		.error{
+			border: 1px solid red;
+		}
+	</style>
+</head>
+<body ng-app='myapp' ng-controller='mainCtroller'>
+	<form ng-submit='submitForm()' name="signUpForm">
+		<div class="form-group">
+			<label>用户名</label>
+			<input name='username' ng-model='username' 
+
+			 ng-init="username = 'fanpeiyao'"
+
+			 ng-class="{'error':signUpForm.username.$invalid && signUpForm.username.$touched}"
+
+			 class="form-control"
+			 required
+			 minlength="4" 
+			 maxlength="10" 
+			 >
+
+			 <input name='username2' 
+
+			
+			 ng-disabled='signUpForm.username.$valid'
+
+			 class="form-control"
+			
+			 >
+
+
+			 <div ng-if='signUpForm.username.$invalid && signUpForm.username.$touched'>输入有误</div>
+
+			 <div ng-if='signUpForm.username.$valid'>输入合法</div>
+		</div>
+		<button type="submit" class="btn btn-primary" ng-disabled='signUpForm.username.$invalid'>提交</button>
+	</form>
+	{{username}}
+</body>
+</html>
+
+<!-- ng-init="username = 'fanpeiyao'"设置初始显示fanpeiao字段 -->
+<!--   ng-class="{'error':signUpForm.username.$invalid && signUpForm.username.$touched}"验证表单是否未通过，touched验证是否有用过 -->
+<!-- ng-if='signUpForm.username.$valid'输入合法 -->
+<!-- required 必填 -->
+<!-- minlength="4" 最小四个字符 -->
+<!-- maxlength="10" 最大十个字符 -->
+
+<!-- ng-submit 只能给form用 -->
+<!-- ng-disabled 用于将一些东西不可用 -->
