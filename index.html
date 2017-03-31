@@ -16,9 +16,9 @@
 	<form ng-submit='submitForm()' name="signUpForm">
 		<div class="form-group">
 			<label>用户名</label>
-			<input name='username' ng-model='username' 
+			<input name='username' ng-model='userdata.username' 
 
-			 ng-init="username = 'fanpeiyao'"
+			 ng-init="userdata.username = 'fanpeiyao'"
 
 			 ng-class="{'error':signUpForm.username.$invalid && signUpForm.username.$touched}"
 
@@ -28,20 +28,24 @@
 			 maxlength="10" 
 			 >
 
-			 <input name='username2' 
+		
 
 			
-			 ng-disabled='signUpForm.username.$valid'
-
-			 class="form-control"
-			
-			 >
-
-
 			 <div ng-if='signUpForm.username.$invalid && signUpForm.username.$touched'>输入有误</div>
 
 			 <div ng-if='signUpForm.username.$valid'>输入合法</div>
 		</div>
+
+		<div class="form-group">
+			<label>性别</label>
+			<label for="general" id="man">男&nbsp;&nbsp;<input type="radio" name="sex" ng-model="userdata.sex" value="男"  ng-init="userdata.sex = '男'" ng-checked="true" /></label>
+<label for="general" style="margin-left: 20px;">女&nbsp;&nbsp;<input type="radio" name="sex"  ng-model="userdata.sex" value="女"/></label>
+
+			
+			
+		</div>
+
+		
 		<button type="submit" class="btn btn-primary" ng-disabled='signUpForm.username.$invalid'>提交</button>
 	</form>
 	{{username}}

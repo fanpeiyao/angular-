@@ -1,7 +1,9 @@
 angular.module('myapp',[])
 	.controller('mainCtroller',["$scope",function ($scope) {
+		
+			$scope.userdata = {};
 		$scope.submitForm = function () {
-			console.log('已提交。。。')
+			console.log($scope.userdata)
 		}
 	}])
 	.controller('signUpCtroller',["$scope",function ($scope) {
