@@ -1,11 +1,13 @@
 angular.module('myapp',[])
 	.controller('mainCtroller',["$scope",function ($scope) {
-		
+
 			$scope.userdata = {};
 		$scope.submitForm = function () {
 			console.log($scope.userdata)
 		}
 	}])
+
+
 	.controller('signUpCtroller',["$scope",function ($scope) {
 
 		$scope.userdata = {}
@@ -52,3 +54,6 @@ angular.module('myapp',[])
 		}
 		return com;
 	})
+
+
+	

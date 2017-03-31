@@ -4,6 +4,8 @@
 	<meta charset="UTF-8">
 	<title>angular表单验证</title>
 	<script src='build/angular.min.js'></script>
+
+	<script src='build/My97DatePicker/WdatePicker.js'></script>
 	<script src='js/index.js'></script>
 	<link rel="stylesheet" href="build/bootstrap.min.css">
 	<style>
@@ -28,8 +30,6 @@
 			 maxlength="10" 
 			 >
 
-		
-
 			
 			 <div ng-if='signUpForm.username.$invalid && signUpForm.username.$touched'>输入有误</div>
 
@@ -39,16 +39,50 @@
 		<div class="form-group">
 			<label>性别</label>
 			<label for="general" id="man">男&nbsp;&nbsp;<input type="radio" name="sex" ng-model="userdata.sex" value="男"  ng-init="userdata.sex = '男'" ng-checked="true" /></label>
-<label for="general" style="margin-left: 20px;">女&nbsp;&nbsp;<input type="radio" name="sex"  ng-model="userdata.sex" value="女"/></label>
+			<label for="general" style="margin-left: 20px;">女&nbsp;&nbsp;<input type="radio" name="sex"  ng-model="userdata.sex" value="女"/></label>
+		</div>
 
+		<div class="form-group">
+			<label>出生日期</label>
+			<input type="text" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'{%y-18}-%M-%d'})"
+   					class="form-control"
+					name="birth" 
+					placeholder="请输入日期" 
+					onchange=""
+					 ng-class="{'error':signUpForm.birth.$error&&signUpForm.birth.$tounched"
+
+					ng-model ="userdata.birth"
+					required="required"/>
+
+
+
+			<div class="error" ng-if="signUpForm.birth.$error&&signUpForm.birth.$tounched">请输入正确的生日</div>
 			
-			
+		</div>
+
+
+		<!--邮箱-->
+		<div class="form_group">
+			<label>请输入邮箱：</label>
+			<input type="email"
+				class="form-control"
+				name="email" 
+				placeholder="输入正确的邮箱"
+				ng-model = "userdata.email"
+			 	ng-pattern="/^[a-z0-9]+@([a-z0-9]+\.)+[a-z]{2,4}$/i"
+
+			    ng-class="{'error':(signUpForm.email.$error.pattern&&signUpForm.email.$touched)||
+			    					signUpForm.email.$touched&&signUpForm.email.$error.required}"
+
+			 	required="required"
+			/>
+		<div ng-if="signUpForm.email.$error.pattern&&signUpForm.email.$touched">请输入正确的邮箱</div>
+		<div  ng-if="signUpForm.email.$touched&&signUpForm.email.$error.required">邮箱是必填项</div>
 		</div>
 
 		
 		<button type="submit" class="btn btn-primary" ng-disabled='signUpForm.username.$invalid'>提交</button>
 	</form>
-	{{username}}
 </body>
 </html>
 
